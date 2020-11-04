@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/table.css')}}">
+</head>
+
+<body>
+    {% include 'sideBar.html' %}
+    <div class="incomeList">
+        <div class="webname">
+            <h1>Income <span style="color: #f44336;"> Details.</span></h1>
+            <hr class="bottom-line">
+        </div>
+    </div>
+    <div class="list-details">
+        <table align="center" cellpading="10" cellspacing="10" border="6">
+            <tr>
+
+                <th>Income</th>
+                <th>Type of Income</th>
+                <th>Date of Income</th>
+                <th>Description</th>
+                <th>Full Name</th>
+                <th colspan="2">Action</th>
+            </tr>
+
+            {% for x in res %}
+            <tr>
+
+                <td>{{x[1]}}</td>
+                <td>{{x[2]}}</td>
+                <td>{{x[3]}}</td>
+                <td>{{x[4]}}</td>
+                <td>{{session['fullname']}}</td>
+                <td><a href="/edit/{{ x[0] }}">Edit</a> |
+                    <a href="/delete/{{ x[0] }}">Delete</a></td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+        <br>
+        <div class="total">
+            <h1>your total income so far <span>{{IncBal}}</span></h1>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

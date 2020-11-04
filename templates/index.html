@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+</head>
+
+<body>
+    {% include 'sideBar.html' %}
+
+    <div class="main">
+        <div class="webname">
+            <h1>Daily <span style="color: #f44336;"> Expense.</span></h1>
+            <hr class="bottom-line">
+        </div>
+
+        <div class="banner">
+        </div>
+
+        <div class="article">
+            <div class="webname">
+                <h1>tips <span style="color: #f44336;">to save money.</span></h1>
+                <p>we will guide you some money saving tips</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <a href="#"><img src="static/images/case1.png" alt="case1"></a>
+        <a href="#"><img src="static/images/case2.png" alt="case2"></a>
+        <a href="#"><img src="static/images/case3.png" alt="case3"></a>
+    </div>
+
+    <br>
+
+    <div class="contact-form">
+
+        <div class="webname">
+            <h1>Contact <span style="color: #f44336;"> Us.</span></h1>
+
+        </div>
+        <div class="fill-form">
+            <form action="/" method="POST">
+                <input type="text" id="fname" name="Name" placeholder="Name" required><br>
+
+                <input type="text" id="mail-id" name="email" placeholder="Email Address" required><br>
+
+                <input type="number" id="number" name="number" placeholder="Phone Number" required><br>
+
+                <textarea id="message" name="message" placeholder="Message" style="height:180px" required></textarea><br>
+
+                <input type="submit" value="Submit" class="btn">
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

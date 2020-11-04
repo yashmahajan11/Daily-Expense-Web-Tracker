@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Expense</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+</head>
+
+<body>
+    {% include 'sideBar.html' %}
+    <div class="addexpense">
+        <div class="webname">
+            <h1>Add <span style="color: #f44336;"> Expense.</span></h1>
+            <hr class="bottom-line">
+        </div>
+        <div class="fill-form">
+            <form method="POST">
+                <input type="number" name="expense" placeholder="Enter your expense.." required><br>
+
+                <input type="Text" name="expenseType" placeholder="Enter your type of expense.." required><br>
+
+                <input type="date" name="expenseDate" required><br>
+
+                <input type="Text" name="desc1" placeholder="Write something.." required><br>
+
+                <select name="fname">
+                    <option >{{session['fullname']}}</option>
+                </select>
+
+                <input type="submit" value="Add" class="btn">
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

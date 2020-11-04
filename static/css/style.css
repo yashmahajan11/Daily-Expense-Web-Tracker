@@ -1,0 +1,231 @@
+* {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #fff;
+}
+
+.menu {
+    background-color: #f44336;
+    height: 100%;
+    width: 230px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    font-weight: bold;
+}
+
+.menu>a {
+    padding: 64px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    display: block;
+    text-transform: uppercase;
+}
+
+.sidenav a {
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    display: block;
+    margin-top: 5%;
+    text-transform: uppercase;
+}
+
+.sidenav a:hover {
+    color: #f44336;
+    background-color: #fff;
+    width: 176px;
+    margin-left: 2px;
+    border-radius: 5px;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.main {
+    margin: 65px 0px 0px 230px;
+    font-size: 25px;
+    padding: 0px 10px;
+}
+
+.webname {
+    margin: 0 0 0 18em;
+}
+
+.bottom-line {
+    width: 15%;
+    border: 5px solid #f44336;
+    border-radius: 4px;
+    margin: 0em;
+}
+
+.banner {
+    background-image: url('../images/banner.jpg');
+    min-height: 538px;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    width: 64%;
+}
+
+input[type=text],
+input[type=email],
+input[type=tel],
+input[type=password],
+input[type=number],
+input[type=date],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=text]:hover,
+input[type=email]:hover,
+input[type=tel]:hover,
+input[type=password]:hover,
+input[type=number]:hover,
+input[type=date]:hover,
+select:hover,
+textarea:hover {
+    color: #f44336;
+    border: 2px solid #f44336;
+    transition: 0.5s;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=tel]:focus,
+input[type=password]:focus,
+input[type=number]:focus,
+input[type=date]:focus,
+select:focus,
+textarea:focus {
+    border: 2px solid #f44336;
+    color: #f44336;
+}
+
+.btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 120px;
+    height: 34px;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background: #fff;
+    color: #f44336;
+    border: 2px solid #f44336;
+    transition: 0.5s;
+}
+
+.addincome {
+    margin: 65px 0px 0px 230px;
+    font-size: 25px;
+    padding: 0px 10px;
+    border-radius: 5px;
+}
+
+.addexpense {
+    margin: 65px 0px 0px 230px;
+    font-size: 25px;
+    padding: 0px 10px;
+    border-radius: 5px;
+}
+
+
+/* ----------------------------feedback------------------------- */
+
+.feedback-form {
+    margin: 65px 0px 0px 230px;
+    font-size: 25px;
+    padding: 0px 10px;
+    border-radius: 5px;
+}
+
+.fill-form {
+    margin: 1.2em 10em;
+}
+
+.incomeList {
+    margin: 65px 0px 0px 230px;
+    font-size: 25px;
+    padding: 0px 10px;
+    border-radius: 5px;
+}
+
+.list-details {
+    margin: 42px 0 0 230px;
+    text-transform: capitalize;
+}
+
+.list-details a {
+    color: #f44336;
+    text-decoration: none;
+}
+
+.list-details a:hover {
+    border-bottom: 1px solid #f44336;
+}
+
+.total {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.total span {
+    color: #f44336;
+}
+
+
+/* ----------------------------Index------------------------- */
+
+.article {
+    text-transform: capitalize;
+    letter-spacing: -1px;
+}
+
+.article p {
+    margin-top: -23px;
+    font-size: 23px;
+    margin-left: 17px;
+}
+
+.row {
+    margin-left: 19em;
+}
+
+.row a {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.row a:hover {
+    opacity: 0.5;
+}
+
+.row img {
+    margin-right: 20px;
+}
+
+.contact-form {
+    margin: 65px 0px 0px 230px;
+    font-size: 25px;
+    padding: 0px 10px;
+    border-radius: 5px;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+
+
+</head>
+
+<body>
+    <div class="menu">
+        <a href="/">Welcome<br> {% if session['user_id'] %} {{session.username}} {% else %} User {% endif %}</a>
+        <div class="sidenav">
+
+            <a href="/">Home</a> {% if session['user_id'] %}
+            <a href="/addIncome">Add Income</a>
+            <a href="/incomeList">Income List</a>
+            <a href="/addExpense">Add Expense</a>
+            <a href="/expenseList">Expense List</a>
+            <a href="/feedback">Feedback</a>
+            <a href="/logout">Logout</a> {% else %}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a> {% endif %}
+
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

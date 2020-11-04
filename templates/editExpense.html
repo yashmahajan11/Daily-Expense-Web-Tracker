@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Income</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+</head>
+
+<body>
+
+    {% include 'sideBar.html' %}
+
+    <div class="addincome">
+        <div class="webname">
+            <h1>Edit <span style="color: #f44336;"> Income.</span></h1>
+            <hr class="bottom-line">
+        </div>
+        <div class="fill-form">
+            <form action="/updateExpense/{{add.0}}" method="POST">
+
+                <input type="number" name="expense" placeholder="Enter your expense.." value="{{add.1}}"><br>
+
+                <input type="Text" name="expenseType" placeholder="Enter your type of expense.." value="{{add.2}}"><br>
+
+                <input type="date" name="expenseDate" placeholder="Choose Date of Expense" value="{{add.3}}"><br>
+
+                <input type="Text" name="desc1" placeholder="Write something.." value="{{add.4}}"><br>
+
+
+                <select name="fname">
+                    <option >{{session['fullname']}}</option>
+                </select>
+
+                <input type="submit" value="Update" class="btn">
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
