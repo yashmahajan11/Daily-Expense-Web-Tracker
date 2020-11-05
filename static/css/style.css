@@ -229,3 +229,87 @@ textarea:focus {
     padding: 0px 10px;
     border-radius: 5px;
 }
+
+
+/* ----------------------------tables------------------------- */
+
+table,
+td,
+th {
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 82%;
+}
+
+th,
+td {
+    padding: 15px;
+}
+
+
+/* ----------------------------login,register------------------------- */
+
+.container {
+    width: 500px;
+    max-width: 90%;
+}
+
+.container form {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background: white;
+    border-radius: 4px;
+    /* box-shadow: 0 8px 16px black; */
+    box-shadow: 5px 10px 18px #888888;
+}
+
+.container form h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #222;
+}
+
+.container form .form-control {
+    width: 100%;
+    height: 40px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid silver;
+    margin: 10px 0 18px 0;
+    padding: 0 10px;
+}
+
+.container form .btn {
+    margin-left: 50%;
+    transform: translate(-50%);
+    width: 120px;
+    height: 34px;
+    border: none;
+    outline: none;
+    background: #f44336;
+    font-size: 16px;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.container form .btn:hover {
+    background: #fff;
+    color: #f44336;
+    border: 2px solid #f44336;
+    transition: 0.5s;
+}
+
+.container form a {
+    text-align: center;
+    text-decoration: none;
+}
+
+.link {
+    color: #f44336;
+}

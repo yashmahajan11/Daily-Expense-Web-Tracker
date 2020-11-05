@@ -1,37 +1,26 @@
-<!DOCTYPE html>
-<html>
+{% extends 'layout.html' %} {% block title %} Add Expense {% endblock %} {% block content %}
+<div class="addexpense">
+    <div class="webname">
+        <h1>Add <span style="color: #f44336;"> Expense.</span></h1>
+        <hr class="bottom-line">
+    </div>
+    <div class="fill-form">
+        <form method="POST">
+            <input type="number" name="expense" placeholder="Enter your expense.." required><br>
 
-<head>
-    <title>Expense</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
-</head>
+            <input type="Text" name="expenseType" placeholder="Enter your type of expense.." required><br>
 
-<body>
-    {% include 'sideBar.html' %}
-    <div class="addexpense">
-        <div class="webname">
-            <h1>Add <span style="color: #f44336;"> Expense.</span></h1>
-            <hr class="bottom-line">
-        </div>
-        <div class="fill-form">
-            <form method="POST">
-                <input type="number" name="expense" placeholder="Enter your expense.." required><br>
+            <input type="date" name="expenseDate" required><br>
 
-                <input type="Text" name="expenseType" placeholder="Enter your type of expense.." required><br>
+            <input type="Text" name="desc1" placeholder="Write something.." required><br>
 
-                <input type="date" name="expenseDate" required><br>
-
-                <input type="Text" name="desc1" placeholder="Write something.." required><br>
-
-                <select name="fname">
+            <select name="fname">
                     <option >{{session['fullname']}}</option>
                 </select>
 
-                <input type="submit" value="Add" class="btn">
+            <input type="submit" value="Add" class="btn">
 
-            </form>
-        </div>
+        </form>
     </div>
-</body>
-
-</html>
+</div>
+{% endblock %}

@@ -165,13 +165,13 @@ def addIncome():
 @app.route("/incomeList", methods = ['GET','POST'])
 def incomeList():
     if 'user_id' in session:
-
+        incomedate = request.form.get('incomeDate')
         fname = request.form.get('fullName')
         
         user_id = session['user_id']
         user = session['fullname']
 
-        query="select * from income where fullname = '{}'".format(user)
+        query="select * from income where fullname = '{}' order by incomeDate desc".format(user)
         
         c.execute(query)
         res=c.fetchall()
@@ -278,11 +278,11 @@ def addExpense():
 
 def expenseList():
     if 'user_id' in session:
-
+        expensedate = request.form.get('expenseDate')
         fname = request.form.get('fullName')
         user = session['fullname']
 
-        query="select * from expense where fullname = '{}'".format(user)
+        query="select * from expense where fullname = '{}' order by expenseDate desc".format(user)
         c.execute(query)
         res=c.fetchall()
         
@@ -359,6 +359,7 @@ def feedback():
             query="INSERT INTO feedback(fullname,email,subject,message) VALUES ('{}','{}','{}','{}')".format(fullname,email,subject,message)
             res=c.execute(query)
             db.commit()
+            
             return redirect('/feedback')
         return render_template('feedback.html')       
     else:

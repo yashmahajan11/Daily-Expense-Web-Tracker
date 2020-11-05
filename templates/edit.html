@@ -1,41 +1,29 @@
-<!DOCTYPE html>
-<html>
+{% extends 'layout.html' %} {% block title %} Edit Income {% endblock %} {% block content %}
 
-<head>
-    <title>Income</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
-</head>
+<div class="addincome">
+    <div class="webname">
+        <h1>Edit <span style="color: #f44336;"> Income.</span></h1>
+        <hr class="bottom-line">
+    </div>
+    <div class="fill-form">
+        <form action="/update/{{add[0]}}" method="POST">
 
-<body>
+            <input type="number" name="income" placeholder="Enter your income.." value="{{add[1]}}"><br>
 
-    {% include 'sideBar.html' %}
+            <input type="Text" name="incomeType" placeholder="Enter your type of income.." value="{{add[2]}}"><br>
 
-    <div class="addincome">
-        <div class="webname">
-            <h1>Edit <span style="color: #f44336;"> Income.</span></h1>
-            <hr class="bottom-line">
-        </div>
-        <div class="fill-form">
-            <form action="/update/{{add[0]}}" method="POST">
+            <input type="date" name="incomeDate" placeholder="Choose Date of Income" value="{{add[3]}}"><br>
 
-                <input type="number" name="income" placeholder="Enter your income.." value="{{add[1]}}"><br>
-
-                <input type="Text" name="incomeType" placeholder="Enter your type of income.." value="{{add[2]}}"><br>
-
-                <input type="date" name="incomeDate" placeholder="Choose Date of Income" value="{{add[3]}}"><br>
-
-                <input type="Text" name="desc" placeholder="Write something.." value="{{add[4]}}"><br>
+            <input type="Text" name="desc" placeholder="Write something.." value="{{add[4]}}"><br>
 
 
-                <select name="fname">
+            <select name="fname">
                     <option >{{session['fullname']}}</option>
                 </select>
 
-                <input type="submit" value="Update" class="btn">
+            <input type="submit" value="Update" class="btn">
 
-            </form>
-        </div>
+        </form>
     </div>
-</body>
-
-</html>
+</div>
+{% endblock %}

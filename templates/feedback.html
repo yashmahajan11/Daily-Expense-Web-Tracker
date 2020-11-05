@@ -1,37 +1,23 @@
-<!DOCTYPE html>
-<html>
+{% extends 'layout.html' %} {% block title %} Feedback {% endblock %} {% block content %}
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-
-<body>
-    {% include 'sideBar.html' %}
-
-
-
-    <div class="feedback-form">
-        <div class="webname">
-            <h1>Feedback <span style="color: #f44336;"> Form.</span></h1>
-            <hr class="bottom-line">
-        </div>
-        <div class="fill-form">
-            <form action="/feedback" method="POST">
-                <input type="text" id="fname" name="fullName" placeholder="Your full name.." required><br>
-
-                <input type="text" id="mail-id" name="email" placeholder="Your email.." required><br>
-
-                <input type="text" id="subject" name="subject" placeholder="Subject.." required><br>
-
-                <textarea id="message" name="message" placeholder="Write something.." style="height:180px" required></textarea><br>
-
-                <input type="submit" value="Submit" class="btn">
-            </form>
-        </div>
+<div class="feedback-form">
+    <div class="webname">
+        <h1>Feedback <span style="color: #f44336;"> Form.</span></h1>
+        <hr class="bottom-line">
     </div>
-    <br>
+    <div class="fill-form">
+        <form action="/feedback" method="POST">
+            <h2>{{msg}}</h2>
+            <input type="text" id="fname" name="fullName" placeholder="Your full name.." required><br>
 
-</body>
+            <input type="text" id="mail-id" name="email" placeholder="Your email.." required><br>
 
-</html>
+            <input type="text" id="subject" name="subject" placeholder="Subject.." required><br>
+
+            <textarea id="message" name="message" placeholder="Write something.." style="height:180px" required></textarea><br>
+
+            <input type="submit" value="Submit" class="btn">
+        </form>
+    </div>
+</div>
+<br> {% endblock %}
