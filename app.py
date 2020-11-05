@@ -195,7 +195,7 @@ def incomeList():
 @app.route('/edit/<string:id_data>',methods = ['GET','POST'])
 
 def get_data(id_data):
-    c.execute("SELECT * FROM income WHERE i_id=%s", (id_data))
+    c.execute("SELECT * FROM income WHERE i_id='{}'".format(id_data))
     data=c.fetchall()
     return render_template('edit.html',id_data=id_data,add=data[0])
 
@@ -209,7 +209,7 @@ def edit(id_data):
         description = request.form.get('desc')
         fname = request.form.get('fullName')
 
-        c.execute("UPDATE income SET income = %s ,incomeType = %s,incomeDate = %s,description = %s,fullname = %s WHERE i_id=%s", (income,incometype,incomedate,description,session['fullname'],id_data))
+        c.execute("UPDATE income SET income = '{}' ,incomeType = '{}',incomeDate = '{}',description = '{}',fullname = '{}' WHERE i_id='{}'".format(income,incometype,incomedate,description,session['fullname'],id_data))
         db.commit()
         return redirect('/incomeList')
 
@@ -227,7 +227,7 @@ def edit(id_data):
 def deleteIncome(id_data):
    
     if 'user_id' in session:
-        c.execute("DELETE FROM income WHERE i_id=%s", (id_data,))
+        c.execute("DELETE FROM income WHERE i_id='{}'".format(id_data,))
         db.commit()
         return redirect(url_for('incomeList'))
 
@@ -303,7 +303,7 @@ def expenseList():
 @app.route('/editE/<string:id_data>',methods = ['GET','POST'])
 
 def get_Edata(id_data):
-    c.execute("SELECT * FROM expense WHERE e_id=%s", (id_data))
+    c.execute("SELECT * FROM expense WHERE e_id='{}'".format(id_data))
     dataE=c.fetchall()
     return render_template('editE.html',id_data=id_data,addE=dataE[0])
 
@@ -317,7 +317,7 @@ def Eedit(id_data):
         description = request.form.get('desc1')
         fname = request.form.get('fullName')
 
-        c.execute("UPDATE expense SET expense = %s ,expenseType = %s,expenseDate = %s,description = %s,fullname = %s WHERE e_id=%s", (expense,expensetype,expensedate,description,session['fullname'],id_data))
+        c.execute("UPDATE expense SET expense = '{}' ,expenseType = '{}',expenseDate = '{}',description = '{}',fullname = '{}' WHERE e_id='{}'".format(expense,expensetype,expensedate,description,session['fullname'],id_data))
         db.commit()
         return redirect('/expenseList')
 
@@ -335,7 +335,7 @@ def Eedit(id_data):
 @app.route('/deleteExp/<string:id_data>', methods = ['GET'])
 def deleteExpense(id_data):
    
-    c.execute("DELETE FROM expense WHERE e_id=%s", (id_data))
+    c.execute("DELETE FROM expense WHERE e_id='{}'".format(id_data))
     db.commit()
     return redirect(url_for('expenseList'))
 
@@ -359,7 +359,6 @@ def feedback():
             query="INSERT INTO feedback(fullname,email,subject,message) VALUES ('{}','{}','{}','{}')".format(fullname,email,subject,message)
             res=c.execute(query)
             db.commit()
-
             return redirect('/feedback')
         return render_template('feedback.html')       
     else:
