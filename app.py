@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect,request,session,url_for
+from flask import Flask,render_template,redirect,request,session,url_for,flash
 import pymysql
 import os
 
@@ -36,6 +36,8 @@ def index():
             query="INSERT INTO contact(id,name,email,telephone,message) VALUES (NULL,'{}','{}','{}','{}')".format(name,email,tele,message)
             res=c.execute(query)
             db.commit()
+
+            flash("Thank you for your valuable time!! We will get back to you soon.")
 
             return redirect('/')
          
@@ -110,7 +112,33 @@ def addUser():
 
 def home():
     if 'user_id' in session:
-        return render_template('home.html')       
+
+        fname = request.form.get('fullName')
+        user = session['fullname']
+
+        query="select * from expense where fullname = '{}' ".format(user)
+        c.execute(query)
+        res=c.fetchall()
+
+        totalExpense=0
+        for i in res:
+            totalExpense=totalExpense+i[1]
+        
+
+        query1="select * from income where fullname = '{}' ".format(user)
+        
+        c.execute(query1)
+        res1=c.fetchall()
+        
+        totalIncome=0
+        for x in res1:
+            totalIncome=totalIncome+x[1]
+
+        totalBalance=totalIncome-totalExpense
+
+        totBal="{:,}".format(totalBalance)
+
+        return render_template('home.html',totalBal=totBal)       
     else:
         return redirect('/')
 
@@ -138,19 +166,23 @@ def logout():
 def addIncome():
     if 'user_id' in session:
         if (request.method == 'POST'):
-            income = request.form.get('income')
+            income = int(request.form.get('income'))
             incometype = request.form.get('incomeType')
             incomedate = request.form.get('incomeDate')
             description = request.form.get('desc')
             fname = request.form.get('fullName')
 
-            
-
             query="INSERT INTO income(i_id,income,incomeType,incomeDate,description,fullname) VALUES (NULL,'{}','{}','{}','{}','{}')".format(income,incometype,incomedate,description,session['fullname'])
-            res=c.execute(query)
-            db.commit()
 
-            return redirect('/incomeList')
+            if income<=0:
+                flash("You can't enter zero or negative amount! Please enter your amount again.")
+                return redirect('/addIncome')
+
+
+            else:
+                res=c.execute(query)
+                db.commit()
+                return redirect('/incomeList')
 
         return render_template('addIncome.html')
 
@@ -165,10 +197,9 @@ def addIncome():
 @app.route("/incomeList", methods = ['GET','POST'])
 def incomeList():
     if 'user_id' in session:
+
         incomedate = request.form.get('incomeDate')
         fname = request.form.get('fullName')
-        
-        user_id = session['user_id']
         user = session['fullname']
 
         query="select * from income where fullname = '{}' order by incomeDate desc".format(user)
@@ -180,8 +211,9 @@ def incomeList():
         for x in res:
             totalIncome=totalIncome+x[1]
 
-        
-        return render_template('incomeList.html',res=res,IncBal=totalIncome)
+        totInc="{:,}".format(totalIncome)
+
+        return render_template('incomeList.html',res=res,IncBal=totInc)
 
     else:
         return redirect('/login')
@@ -249,16 +281,53 @@ def deleteIncome(id_data):
 def addExpense():
     if 'user_id' in session:
         if (request.method == 'POST'):
-            expense = request.form.get('expense')
+            expense = int(request.form.get('expense'))
             expensetype = request.form.get('expenseType')
             expensedate = request.form.get('expenseDate')
             description = request.form.get('desc1')
             fname = request.form.get('fullName')
         
-            query="INSERT INTO expense(e_id,expense,expenseType,expenseDate,description,fullname) VALUES (NULL,'{}','{}','{}','{}','{}')".format(expense,expensetype,expensedate,description,session['fullname'])
-            res=c.execute(query)
-            db.commit()
-            return redirect('/expenseList')
+            queryExp="INSERT INTO expense(e_id,expense,expenseType,expenseDate,description,fullname) VALUES (NULL,'{}','{}','{}','{}','{}')".format(expense,expensetype,expensedate,description,session['fullname'])
+            
+
+        
+            fname = request.form.get('fullName')
+            user = session['fullname']
+
+            query="select * from expense where fullname = '{}' ".format(user)
+            c.execute(query)
+            res=c.fetchall()
+
+            totalExpense=0
+            for i in res:
+                totalExpense=totalExpense+i[1]
+            
+            
+            query1="select * from income where fullname = '{}' ".format(user)
+            
+            c.execute(query1)
+            res1=c.fetchall()
+            
+            totalIncome=0
+            for x in res1:
+                totalIncome=totalIncome+x[1]
+
+            totalBalance=totalIncome-totalExpense
+
+            totBal="{:,}".format(totalBalance)
+
+            if expense<=0:
+                flash("You can't enter zero or negative amount! Please enter your amount again.")
+                return redirect('/addExpense')
+
+            elif totalBalance>expense:
+                resExp=c.execute(queryExp)
+                db.commit()
+                return redirect('/expenseList')
+
+            else:
+                flash("You have insufficient balance! Please check your balance again.")
+                return redirect('/addExpense')
 
         return render_template('addExpense.html')
 
@@ -285,12 +354,14 @@ def expenseList():
         query="select * from expense where fullname = '{}' order by expenseDate desc".format(user)
         c.execute(query)
         res=c.fetchall()
-        
+
         totalExpense=0
         for i in res:
             totalExpense=totalExpense+i[1]
 
-        return render_template('expenseList.html',res=res,ExpBal=totalExpense)
+        totExp="{:,}".format(totalExpense)
+
+        return render_template('expenseList.html',res=res,ExpBal=totExp)
 
     else:
         return redirect('/login')
@@ -359,6 +430,8 @@ def feedback():
             query="INSERT INTO feedback(fullname,email,subject,message) VALUES ('{}','{}','{}','{}')".format(fullname,email,subject,message)
             res=c.execute(query)
             db.commit()
+
+            flash("Thank you for your valuable feedback!!")
             
             return redirect('/feedback')
         return render_template('feedback.html')       

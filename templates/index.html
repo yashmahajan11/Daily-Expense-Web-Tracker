@@ -31,7 +31,11 @@
         <h1>Contact <span style="color: #f44336;"> Us.</span></h1>
 
     </div>
-    <div class="fill-form">
+    <div class="fill-form" id="contact-form">
+
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
+        <p class="success-flash-Msg">{{msg}}</p> {% endfor %} {% endif %} {% endwith %}
+
         <form action="/" method="POST">
             <input type="text" id="fname" name="Name" placeholder="Name" required><br>
 

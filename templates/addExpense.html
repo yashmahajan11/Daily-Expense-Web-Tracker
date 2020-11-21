@@ -4,7 +4,12 @@
         <h1>Add <span style="color: #f44336;"> Expense.</span></h1>
         <hr class="bottom-line">
     </div>
+
     <div class="fill-form">
+
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
+        <p class="danger-flash-Msg">{{msg}}</p> {% endfor %} {% endif %} {% endwith %}
+
         <form method="POST">
             <input type="number" name="expense" placeholder="Enter your expense.." required><br>
 

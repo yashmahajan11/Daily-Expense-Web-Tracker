@@ -10,10 +10,10 @@
 
 <body>
     <div class="menu">
-        <a href="/">Welcome<br> {% if session['user_id'] %} {{session.username}} {% else %} User {% endif %}</a>
+        <a href="/home">Welcome<br> {% if session['user_id'] %} {{session.username}} {% else %} User {% endif %}</a>
         <div class="sidenav">
 
-            <a href="/">Home</a> {% if session['user_id'] %}
+            <a href="/home">Home</a> {% if session['user_id'] %}
             <a href="/addIncome">Add Income</a>
             <a href="/incomeList">Income List</a>
             <a href="/addExpense">Add Expense</a>

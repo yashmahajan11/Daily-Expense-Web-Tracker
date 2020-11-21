@@ -6,6 +6,10 @@
         <hr class="bottom-line">
     </div>
     <div class="fill-form">
+
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %}
+        <p class="success-flash-Msg">{{msg}}</p> {% endfor %} {% endif %} {% endwith %}
+
         <form action="/feedback" method="POST">
             <h2>{{msg}}</h2>
             <input type="text" id="fname" name="fullName" placeholder="Your full name.." required><br>
